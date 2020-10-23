@@ -10,6 +10,11 @@
       "StackName": "amplify-reactnativemedapp-dev-103415",
       "StackId": "arn:aws:cloudformation:us-east-1:338106847494:stack/amplify-reactnativemedapp-dev-103415/39afee90-1545-11eb-811c-0a78092beb51",
       "AmplifyAppId": "d1mgfjuf0ykmm9"
+    },
+    "categories": {
+      "auth": {
+        "reactnativemedappb01d80c8": {}
+      }
     }
   }
 }

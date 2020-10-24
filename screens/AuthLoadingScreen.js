@@ -12,7 +12,7 @@ class AuthLoadingScreen extends React.Component {
           this.props.navigation.navigate('Main');
           break;
         case 'signOut':
-          this.props.navigation.navigate('Auth');
+          this.props.navigation.navigate('Login');
           break;
         default:
           break;
@@ -25,9 +25,10 @@ class AuthLoadingScreen extends React.Component {
     try {
       currentSession = await Auth.currentSession();
     } catch(err) {
+      console.log('Hiiiii')
       console.log(err);
     }
-    this.props.navigation.navigate(currentSession ? 'Main' : 'Auth');
+    this.props.navigation.navigate(currentSession ? 'Main' : 'Login');
   };
 
   render() {

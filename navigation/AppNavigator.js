@@ -8,7 +8,7 @@ export default createAppContainer(createSwitchNavigator(
     {
       AuthLoading: AuthLoadingScreen,
       Main: MainNavigator,
-      Auth: AuthNavigator
+      Login: AuthNavigator
     },
     {
       initialRouteName: 'AuthLoading',

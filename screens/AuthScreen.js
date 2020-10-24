@@ -8,8 +8,8 @@ class AuthScreen extends React.Component {
     return (
         <View style={styles.authScreen} >
           <Button
-            onPress={() => Auth.federatedSignIn({provider: 'Facebook'})}
-            title="Authenticate with Facebook"
+            onPress={() => Auth.signIn('luismiguel.ulloa@gmail.com','luis2010')}
+            title="Authenticate"
           />
         </View>
     );

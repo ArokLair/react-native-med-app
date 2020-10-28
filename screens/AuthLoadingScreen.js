@@ -25,11 +25,10 @@ class AuthLoadingScreen extends React.Component {
     try {
       currentSession = await Auth.currentSession();
     } catch(err) {
-      console.log('Hiiiii')
       console.log(err);
     }
     this.props.navigation.navigate(currentSession ? 'Main' : 'Login');
-  };
+  }
 
   render() {
     return (

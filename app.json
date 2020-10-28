@@ -8,7 +8,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#4e8fb0"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -17,7 +17,24 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "splash":{
+        "image":"./assets/img/splash-screens/ios/splash.png",
+        "backgroundColor": "#4e8fb0",
+        "resizeMode":"cover"
+      }
+    },
+    "android":{
+      "splash":{
+        "ldpi":"./assets/img/splash-screens/android/drawable-ldpi/screen.png",
+        "mdpi":"./assets/img/splash-screens/android/drawable-mdpi/screen.png",
+        "hdpi":"./assets/img/splash-screens/android/drawable-hdpi/screen.png",
+        "xhdpi":"./assets/img/splash-screens/android/drawable-xhdpi/screen.png",
+        "xxhdpi":"./assets/img/splash-screens/android/drawable-xxhdpi/screen.png",
+        "xxxhdpi":"./assets/img/splash-screens/android/drawable-xxxhdpi/screen.png",
+        "backgroundColor": "#4e8fb0",
+        "resizeMode":"cover"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

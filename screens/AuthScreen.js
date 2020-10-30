@@ -56,7 +56,7 @@ class AuthScreen extends React.Component {
           }
         </View>
 
-        <View style={{ width, flexDirection: "row", justifyContent: "space-around", position: "absolute", bottom: 250, alignSelf: "center" }}>
+        <View style={{ width, flexDirection: "row", justifyContent: "space-around", position: "absolute", bottom: 220, alignSelf: "center" }}>
           <TouchableOpacity
             onPress={() => Auth.signIn('luismiguel.ulloa@gmail.com', 'luis2010').then(() => console.log('Logeado')).catch(err => console.log('Error logeando', err))}
             style={styles.appButtonContainerLogin}
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   container: { width, height },
   scroll: { width, height },
   image: { width, height, resizeMode: "cover" },
-  pagination: { flexDirection: "row", position: "absolute", bottom: 350, alignSelf: "center" },
+  pagination: { flexDirection: "row", position: "absolute", bottom: 300, alignSelf: "center" },
   pagingText: { fontSize: (width / 20), color: "#888", margin: 3 },
   pagingActiveText: { fontSize: (width / 20), color: "#fff", margin: 3 },
   appButtonContainerLogin: {

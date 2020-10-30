@@ -1,9 +1,9 @@
 import React from "react";
-import { Button, View, StyleSheet, Dimensions, Image, ScrollView } from "react-native";
+import { Button, View, Text, StyleSheet, Dimensions, Image, ScrollView, TouchableOpacity } from "react-native";
 import { Auth } from 'aws-amplify';
 
 const { width } = Dimensions.get('window');
-//const height = width * 0.8
+//const height = width * 1.5
 const height = 900
 
 const images = [
@@ -14,27 +14,96 @@ const images = [
 
 class AuthScreen extends React.Component {
 
+  state = {
+    active: 0
+  }
+
+  change = ({ nativeEvent }) => {
+    const slide = Math.ceil(nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width);
+    if (slide !== this.state.active) {
+      this.setState({ active: slide });
+    }
+  }
+
+  onPress = () => {
+    console.log("Click")
+  }
+
   render() {
     return (
-      <View style={{ width, height }}>
-        <ScrollView pagingEnabled horizontal style={{ width, height }}>
+      <View style={styles.container}>
+        <ScrollView
+          pagingEnabled
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          onScroll={this.change}
+          style={styles.scroll}
+        >
           {
             images.map((image, index) => (
               <Image
                 key={index}
                 source={{ uri: image }}
-                style={{ width, height ,resizeMode:"cover"}} />
+                style={styles.image} />
             ))
           }
         </ScrollView>
+        <View style={styles.pagination}>
+          {
+            images.map((i, k) => (
+              <Text key={k} style={k == this.state.active ? styles.pagingActiveText : styles.pagingText}>⬤</Text>
+            ))
+          }
+        </View>
+
+        <View style={{ width, flexDirection: "row", justifyContent: "space-around", position: "absolute", bottom: 250, alignSelf: "center" }}>
+          <TouchableOpacity
+            onPress={() => Auth.signIn('luismiguel.ulloa@gmail.com', 'luis2010').then(() => console.log('Logeado')).catch(err => console.log('Error logeando', err))}
+            style={styles.appButtonContainerLogin}
+          >
+            <Text style={styles.appButtonText}>Iniciar Sesión</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => console.log("Click")} style={styles.appButtonContainerRegister}>
+            <Text style={styles.appButtonText}>Registrarme</Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
     )
   }
 
 }
 
-export default AuthScreen;
-
 const styles = StyleSheet.create({
-
+  container: { width, height },
+  scroll: { width, height },
+  image: { width, height, resizeMode: "cover" },
+  pagination: { flexDirection: "row", position: "absolute", bottom: 350, alignSelf: "center" },
+  pagingText: { fontSize: (width / 20), color: "#888", margin: 3 },
+  pagingActiveText: { fontSize: (width / 20), color: "#fff", margin: 3 },
+  appButtonContainerLogin: {
+    elevation: 8,
+    backgroundColor: "#1e88e5",
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 12
+  },
+  appButtonContainerRegister: {
+    elevation: 8,
+    backgroundColor: "#82b1ff",
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 12
+  },
+  appButtonText: {
+    fontSize: 18,
+    color: "#fff",
+    fontFamily: "Muli",
+    fontWeight: "bold",
+    alignSelf: "center",
+    padding: 10,
+    textTransform: "uppercase"
+  }
 });
+
+export default AuthScreen;

@@ -4,6 +4,9 @@ import AuthScreen from '../screens/AuthScreen';
 
 export default createStackNavigator(
   {
-    'Acceso al sistema': { screen: AuthScreen }
-  }
+    Auth: { 
+      screen: AuthScreen
+    }
+  },
+  { headerMode: 'none' }
 );

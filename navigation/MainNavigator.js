@@ -4,7 +4,12 @@ import HomeScreen from '../screens/HomeScreen';
 
 export default createStackNavigator(
   {
-    Home: { screen: HomeScreen }
+    Home: {
+      screen: HomeScreen,
+      navigationOptions: () => ({
+        title: 'Hogar dulce hogar'
+      })
+    }
   },
   { initialRouteName: 'Home' }
 );

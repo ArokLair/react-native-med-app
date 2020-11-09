@@ -6,7 +6,7 @@ class HomeScreen extends React.Component {
     render() {
         return (
             <View>
-                <Text onPress={()=>console.log(Auth)}> Home Screen </Text>
+                <Text onPress={async ()=>console.log(Auth.currentUserInfo())}> Home Screen </Text>
                 <Button onPress={() => Auth.signOut()} title='Sign out' />
             </View>
         )

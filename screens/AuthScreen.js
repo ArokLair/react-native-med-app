@@ -1,10 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Dimensions, Image, ScrollView, TouchableOpacity } from "react-native";
-//import { Auth } from 'aws-amplify';
 
 const { height, width } = Dimensions.get('window');
-//const height = width * 2.5
-//const height = 900
 
 
 const images = [
@@ -64,14 +61,14 @@ class AuthScreen extends React.Component {
           width, flexDirection: "column",
           position: "absolute",
           paddingHorizontal:20,
-          top: 0, left: 0, right: 0, bottom: 0,
+          top: 0, left: 0, right: 0, bottom: 100,
           justifyContent: "center"
         }}>
           <Text style={{fontFamily:'Muli',fontWeight:"bold",fontSize:70,color:'#1C2833'}}>
-            Sistema
+            MedicApp
           </Text>
-          <Text style={{fontFamily:'Muli',fontSize:50,color:'#1C2833'}}>
-            Medico
+          <Text style={{fontFamily:'Muli',fontSize:20,color:'#303439'}}>
+            Su sistema de historias medicas
           </Text>
         </View>
         <View style={{

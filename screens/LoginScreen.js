@@ -14,7 +14,7 @@ class LoginScreen extends React.Component {
 
     state = {
         username: 'luismiguel.ulloa@gmail.com',
-        password: 'luis2010',
+        password: 'Luisseguro3494',
         isLoggingIn: false,
         message: ''
     }
@@ -47,9 +47,9 @@ class LoginScreen extends React.Component {
                                 </Text>
                             )}
                             {this.state.isLoggingIn && <ActivityIndicator />}
-                            <View style={{margin:7}} />
+                            <View style={{ margin: 7 }} />
                             <Button
-                                disabled={this.state.isLoggingIn||!this.state.username||!this.state.password}
+                                disabled={this.state.isLoggingIn || !this.state.username || !this.state.password}
                                 buttonStyle={styles.loginButton}
                                 onPress={() => this.onLoginPress()}
                                 title="Acceder"
@@ -69,11 +69,17 @@ class LoginScreen extends React.Component {
     onLoginPress() {
         this.setState({ isLoggingIn: true, message: '' });
 
-        Auth.signIn(this.state.username, this.state.password).then((response) => {
-            //console.log(response)
-            console.log(response)
-            this.props.navigation.navigate('Main')
-        }).catch(err => {
+        Auth.signIn(this.state.username, this.state.password).then(
+            user => {
+                console.log(user);
+                if(user.challengeName === 'NEW_PASSWORD_REQUIRED'){
+                    console.log('aaaaa')
+                    Auth.completeNewPassword(user,'Luisseguro3494').then(()=>console.log('xxx'));
+                }
+                this.props.navigation.navigate('Home')
+            }
+
+        ).catch(err => {
             this.setState({ message: err.message });
             this.setState({ isLoggingIn: false })
         });

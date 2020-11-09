@@ -14,7 +14,7 @@ class LoginScreen extends React.Component {
 
     state = {
         username: 'luismiguel.ulloa@gmail.com',
-        password: 'Luisseguro3494',
+        password: 'NewPass1234',
         isLoggingIn: false,
         message: ''
     }
@@ -71,10 +71,8 @@ class LoginScreen extends React.Component {
 
         Auth.signIn(this.state.username, this.state.password).then(
             user => {
-                console.log(user);
                 if(user.challengeName === 'NEW_PASSWORD_REQUIRED'){
-                    console.log('aaaaa')
-                    Auth.completeNewPassword(user,'Luisseguro3494').then(()=>console.log('xxx'));
+                    Auth.completeNewPassword(user,'NewPass1234').then(()=>console.log('xxx'));
                 }
                 this.props.navigation.navigate('Home')
             }

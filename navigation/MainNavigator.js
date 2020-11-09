@@ -7,7 +7,7 @@ export default createStackNavigator(
     Home: {
       screen: HomeScreen,
       navigationOptions: () => ({
-        title: 'Hogar dulce hogar'
+        title: 'Bienvenido'
       })
     }
   },

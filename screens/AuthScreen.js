@@ -1,15 +1,16 @@
 import React from "react";
-import { Button, View, Text, StyleSheet, Dimensions, Image, ScrollView, TouchableOpacity } from "react-native";
-import { Auth } from 'aws-amplify';
+import { View, Text, StyleSheet, Dimensions, Image, ScrollView, TouchableOpacity } from "react-native";
+//import { Auth } from 'aws-amplify';
 
-const { width } = Dimensions.get('window');
-//const height = width * 1.5
-const height = 900
+const { height, width } = Dimensions.get('window');
+//const height = width * 2.5
+//const height = 900
+
 
 const images = [
-  'https://images.pexels.com/photos/4047077/pexels-photo-4047077.jpeg?cs=srgb&dl=pexels-karolina-grabowska-4047077.jpg&fm=jpg',
-  'https://images.pexels.com/photos/3845808/pexels-photo-3845808.jpeg?cs=srgb&dl=pexels-anna-shvets-3845808.jpg&fm=jpg',
-  'https://images.pexels.com/photos/4506111/pexels-photo-4506111.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
+  require('../assets/images/uno.jpg'),
+  require('../assets/images/dos.jpg'),
+  require('../assets/images/tres.jpeg')
 ]
 
 class AuthScreen extends React.Component {
@@ -18,17 +19,20 @@ class AuthScreen extends React.Component {
     active: 0
   }
 
+  login = () => {
+    this.props.navigation.navigate('Login');
+  }
+
+  register = () => {
+    console.log("Register click")
+  }
+
   change = ({ nativeEvent }) => {
     const slide = Math.ceil(nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width);
     if (slide !== this.state.active) {
       this.setState({ active: slide });
     }
   }
-
-  onPress = () => {
-    console.log("Click")
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -43,7 +47,7 @@ class AuthScreen extends React.Component {
             images.map((image, index) => (
               <Image
                 key={index}
-                source={{ uri: image }}
+                source={image}
                 style={styles.image} />
             ))
           }
@@ -56,14 +60,33 @@ class AuthScreen extends React.Component {
           }
         </View>
 
-        <View style={{ width, flexDirection: "row", justifyContent: "space-around", position: "absolute", bottom: 220, alignSelf: "center" }}>
+        <View style={{
+          width, flexDirection: "column",
+          position: "absolute",
+          paddingHorizontal:20,
+          top: 0, left: 0, right: 0, bottom: 0,
+          justifyContent: "center"
+        }}>
+          <Text style={{fontFamily:'Muli',fontWeight:"bold",fontSize:70,color:'#1C2833'}}>
+            Sistema
+          </Text>
+          <Text style={{fontFamily:'Muli',fontSize:50,color:'#1C2833'}}>
+            Medico
+          </Text>
+        </View>
+        <View style={{
+          width, flexDirection: "row",
+          justifyContent: "space-around",
+          position: "absolute", bottom: 20,
+          alignSelf: "center"
+        }}>
           <TouchableOpacity
-            onPress={() => Auth.signIn('luismiguel.ulloa@gmail.com', 'luis2010').then(() => console.log('Logeado')).catch(err => console.log('Error logeando', err))}
-            style={styles.appButtonContainerLogin}
-          >
+            onPress={this.login}
+            style={styles.appButtonContainerLogin}>
             <Text style={styles.appButtonText}>Iniciar Sesión</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => console.log("Click")} style={styles.appButtonContainerRegister}>
+          <TouchableOpacity onPress={this.register}
+            style={styles.appButtonContainerRegister}>
             <Text style={styles.appButtonText}>Registrarme</Text>
           </TouchableOpacity>
         </View>
@@ -77,8 +100,8 @@ class AuthScreen extends React.Component {
 const styles = StyleSheet.create({
   container: { width, height },
   scroll: { width, height },
-  image: { width, height, resizeMode: "cover" },
-  pagination: { flexDirection: "row", position: "absolute", bottom: 300, alignSelf: "center" },
+  image: { width, height, resizeMode: "cover",opacity:0.5},
+  pagination: { flexDirection: "row", position: "absolute", bottom: 100, alignSelf: "center" },
   pagingText: { fontSize: (width / 20), color: "#888", margin: 3 },
   pagingActiveText: { fontSize: (width / 20), color: "#fff", margin: 3 },
   appButtonContainerLogin: {

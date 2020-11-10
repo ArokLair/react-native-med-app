@@ -46,7 +46,7 @@ class LoginScreen extends React.Component {
                                     {this.state.message}
                                 </Text>
                             )}
-                            {this.state.isLoggingIn && <ActivityIndicator />}
+                            {this.state.isLoggingIn && <ActivityIndicator size="large" color="#00ff00" />}
                             <View style={{ margin: 7 }} />
                             <Button
                                 disabled={this.state.isLoggingIn || !this.state.username || !this.state.password}
@@ -67,7 +67,7 @@ class LoginScreen extends React.Component {
         )
     }
     onLoginPress() {
-        this.setState({ isLoggingIn: true, message: '' });
+        this.setState({ isLoggingIn: true, message: 'Cargando...' });
 
         Auth.signIn(this.state.username, this.state.password).then(
             user => {

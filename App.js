@@ -1,7 +1,7 @@
 import React from 'react';
 import AppNavigator from './navigation/AppNavigator';
 
-//import { Asset } from 'expo-asset';
+import { Asset } from 'expo-asset';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 
@@ -20,6 +20,7 @@ class App extends React.Component {
   async _cacheResourcesAsync() {
     return new Promise(async(resolve)=>{
       try{
+        //await Asset.loadAsync(require('./assets/slides'));
         await Font.loadAsync({
           'Muli': require('./assets/fonts/Muli.ttf'),
           'Muli_Italic':require('./assets/fonts/Muli-Italic.ttf'),

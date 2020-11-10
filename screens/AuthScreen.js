@@ -1,14 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Dimensions, Image, ScrollView, TouchableOpacity } from "react-native";
-
+import slides from "../assets/slides";
 const { height, width } = Dimensions.get('window');
-
-
-const images = [
-  require('../assets/images/uno.jpg'),
-  require('../assets/images/dos.jpg'),
-  require('../assets/images/tres.jpeg')
-]
 
 class AuthScreen extends React.Component {
 
@@ -41,17 +34,18 @@ class AuthScreen extends React.Component {
           style={styles.scroll}
         >
           {
-            images.map((image, index) => (
+            slides.map((slide, index) => (
               <Image
                 key={index}
-                source={image}
+                source={slide}
+                transition={false}
                 style={styles.image} />
             ))
           }
         </ScrollView>
         <View style={styles.pagination}>
           {
-            images.map((i, k) => (
+            slides.map((i, k) => (
               <Text key={k} style={k == this.state.active ? styles.pagingActiveText : styles.pagingText}>⬤</Text>
             ))
           }
